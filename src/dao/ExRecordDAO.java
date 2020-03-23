@@ -56,7 +56,7 @@ public class ExRecordDAO {
 		// データベース接続
 		try(Connection conn = DriverManager.getConnection(JDBC_URL,DB_USER, DB_PASS)) {
 		// SELECT文の準備
-		String sql = "SELECT parts,type, rep, exSet, weight, createDate FROM exRecord WHERE userId = ?";
+		String sql = "SELECT parts,type, rep, exSet, weight, createDate FROM ExRecord WHERE userId = ?";
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 		pStmt.setString(1,account.getUserId());
 

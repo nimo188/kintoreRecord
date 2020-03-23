@@ -17,6 +17,7 @@ public class AccountDAO {
 	private final String DB_USER = "root";
 	private final String DB_PASS = "sa5su6ke7";
 
+	// ログイン情報を取得する
 	public Account findByLogin(Login login) {
 		Account account = null;
 
@@ -49,6 +50,7 @@ public class AccountDAO {
 		return account;
 		}
 
+	// アカウントリストを取得する
 	public List<Account> findAccountList(Account account) {
 		List<Account> accountList = new ArrayList<>();
 
@@ -76,4 +78,36 @@ public class AccountDAO {
 			}
 		return accountList;
 		}
+
+	// 重複したユーザーIDがあるかどうかチェックする
+	public Account checkByUserId(Account account) {
+		Account checkUserId = null;
+
+	// データベースへ接続
+	try {
+		Class.forName("org.mariadb.jdbc.Driver");
+		Connection conn = DriverManager.getConnection(JDBC_URL, DB_USER, DB_PASS);
+		// SELECT文を準備
+		String sql = "SELECT userId FROM personalInfomation WHERE userId = ?";
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+		pStmt.setString(1,account.getUserId());
+
+		// SELECT文を実行し、結果表を取得
+		ResultSet rs = pStmt.executeQuery();
+
+		// 一致したユーザーIDが存在した場合
+		// そのユーザーを表すAccountインスタンスを生成
+		if(rs.next()) {
+			// 結果表からデータを取得
+			String userId = rs.getString("userId");
+			checkUserId = new Account(userId);
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+		// 見つかったユーザーIDまたはnullを返す
+		return checkUserId;
+		}
+
 }

@@ -1,16 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+<%@ page import="model.KintoreType,java.util.List" %>
+<%
+// リクエストスコープから筋トレ部位、種目を取得
+List<KintoreType> kintoreList = (List<KintoreType>) request.getAttribute("kintoreList");
+%><!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+<script  type="text/javascript">
+history.pushState(null, null, null);
+// ブラウザバック禁止
+window.addEventListener("popstate", function (e) {
+	history.pushState(null, null, null);
+	return;
+});
+</script>
 <title>筋トレ種目の選択</title>
 </head>
 <body>
+<div class="container">
+<div class="card">
 <div class="container mt-3">
 <div class="row">
 <div class="col-sm-2 mt-5">
@@ -25,18 +37,20 @@
 </div>
 <div class="col-sm-10">
 <h1 class="text-center">筋トレを記録する</h1>
-<c:forEach var="kintoreType" items="${kintoreList }">
+<% for(KintoreType kType : kintoreList) { %>
   <div class="list-group">
   <div class="row">
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <a href="/kintoreRecord/RegistDetailServlet?type=${kintoreType.type}&&parts=${kintoreType.parts}" class="list-group-item mt-2 text-dark btn btn-warning">${kintoreType.type}</a>
+    <a href="/kintoreRecord/RegistDetailServlet?type=<%= kType.getType() %>&&parts=<%= kType.getParts() %>" class="list-group-item mt-2 text-dark btn btn-warning"><%= kType.getType() %></a>
   </div>
   <div class="col-sm-1"></div>
   </div>
   </div>
-</c:forEach>
+<% } %>
 
+</div>
+</div>
 </div>
 </div>
 </div>
