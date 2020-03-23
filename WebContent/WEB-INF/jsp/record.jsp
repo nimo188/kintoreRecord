@@ -18,12 +18,10 @@ List<RecordList> recordList = (List<RecordList>) request.getAttribute("recordLis
 <script  type="text/javascript">
 history.pushState(null, null, null);
 // ブラウザバック禁止
-/***
 window.addEventListener("popstate", function (e) {
 	history.pushState(null, null, null);
 	return;
 });
-**/
 </script>
 <title><% for(Account account : accountList) {%>
 <%= account.getName() %>さんの筋トレ記録
