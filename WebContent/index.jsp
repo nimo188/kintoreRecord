@@ -82,6 +82,24 @@ window.addEventListener("popstate", function (e) {
 </div>
 </form>
 </div>
+<div class='card'>
+<div class="row">
+<div class="col-sm-3"></div>
+<h2 class="col-sm-5">テスト用アカウント</h2>
+</div>
+<div class="row">
+<div class="col-sm-3"></div>
+<p class="col-sm-7 text-danger">アカウント登録からでも可能ですが、下記のアカウントでもご利用できます。</p>
+</div>
+<div class="row">
+<div class="col-sm-3"></div>
+<p class="col-sm-2">ユーザーID:test123</p>
+</div>
+<div class="row">
+<div class="col-sm-3"></div>
+<p class="col-sm-2">パスワード:test123</p>
+</div>
+</div>
 </div>
 </body>
 </html>
