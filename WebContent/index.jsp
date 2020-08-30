@@ -89,7 +89,7 @@ window.addEventListener("popstate", function (e) {
 </div>
 <div class="row">
 <div class="col-sm-3"></div>
-<p class="col-sm-7 text-danger">アカウント登録からでも可能ですが、下記のアカウントでもご利用できます。</p>
+<p class="col-sm-7 text-danger">アカウント登録からでも可能ですが、下記のアカウントでもご利用できます^^。</p>
 </div>
 <div class="row">
 <div class="col-sm-3"></div>
